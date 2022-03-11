@@ -34,7 +34,7 @@ public class SimpleTest {
 
     @ValueSource(strings = {"Name12@gmail.com", "Name11@gmail.com"})
     @ParameterizedTest(name = "Проверка работы теста с аннотацией ValueSource")
-    void commonselenideSearchTest(String testData) {
+    void completionRegistrationFormTest(String testData) {
         $("#contact").setValue("Имя");
         $("#email").setValue(testData);
         $("#account_myPasswordEdit_2ID").setValue("Parole123!");
