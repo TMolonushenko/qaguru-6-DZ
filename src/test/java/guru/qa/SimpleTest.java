@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -30,9 +31,21 @@ public class SimpleTest {
     //String emailname = faker.internet().emailAddress();
     // String phone = faker.phoneNumber().phoneNumber();
 
+
+    @ValueSource(strings = {"Name12@gmail.com", "Name11@gmail.com"})
+    @ParameterizedTest(name = "Проверка работы теста с аннотацией ValueSource")
+    void commonselenideSearchTest(String testData) {
+        $("#contact").setValue("Имя");
+        $("#email").setValue(testData);
+        $("#account_myPasswordEdit_2ID").setValue("Parole123!");
+        $("#cellphone").setValue("+79266351411");
+        $(".button").click();
+        $(".coloredMessage ").shouldHave(text("Вы были успешно зарегистрированы! "));
+    }
+
     @CsvSource(value = {
-            "Имя1,  Name07@gmail.com, Parole123!,+79266354481, Вы были успешно зарегистрированы! ",
-            "Имя2,  Name07@gmail.com, Parole123!,+79266354481, Пользователь с таким адресом e-mail уже зарегистрирован."
+            "Имя1,  Name13@gmail.com, Parole123!,+79266351481, Вы были успешно зарегистрированы! ",
+            "Имя2,  Name13@gmail.com, Parole123!,+79266351481, Пользователь с таким адресом e-mail уже зарегистрирован."
     })
 
     @ParameterizedTest(name = "Проверка правильности заполнения формы регистрации")
@@ -48,8 +61,8 @@ public class SimpleTest {
 
     static Stream<Arguments> mixedArgumentsTestDataProvider() {
         return Stream.of(
-                Arguments.of("Имя3", "Name08@gmail.com", "Parole123!", "+79264552481", "Вы были успешно зарегистрированы!"),
-                Arguments.of("Имя4", "Name08@gmail.com", "Parole123!", "+79264524481", "Пользователь с таким адресом e-mail уже зарегистрирован.")
+                Arguments.of("Имя3", "Name14@gmail.com", "Parole123!", "+79264952481", "Вы были успешно зарегистрированы!"),
+                Arguments.of("Имя4", "Name14@gmail.com", "Parole123!", "+79264924481", "Пользователь с таким адресом e-mail уже зарегистрирован.")
         );
     }
 
